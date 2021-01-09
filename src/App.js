@@ -53,13 +53,8 @@ const App = () => {
       });
   }, []);
 
-  const onCountryChange = async (event) => {
+  const onCountryChange = (event) => {
     const contryCode = event.target.value;
-  
-    if (contryCode === 'worldwide') {
-      setCountry('worldwide');
-      return false;
-    };
 
     fetch(`https://disease.sh/v3/covid-19/countries/${contryCode}`)
       .then(response => response.json())
