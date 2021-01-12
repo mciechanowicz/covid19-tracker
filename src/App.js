@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Paper, Box } from '@material-ui/core';
+import { Paper, Box, CircularProgress } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 import { Header, Map, Stats, Sidebar } from './components';
 import { BASE_API_URL, COUNTRIES, ALL } from './config/api';
+import LoadingIndicator from './components/LoadingIndicator';
 
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
   const [mapZoom, setMapZoom] = useState(2);
   const [mapCountries, setMapCountries] = useState([]);
   const [darkMode, setDarkMode] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const classes = useStyles();
 
@@ -26,6 +28,7 @@ const App = () => {
   });
 
   useEffect(() => {
+    setLoading(true);
     fetch(BASE_API_URL + COUNTRIES)
       .then(response => response.json())
       .then(data =>  {
@@ -39,7 +42,8 @@ const App = () => {
 
         setCountries(countries);
         setMapCountries(data);
-      })
+      });
+      setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -47,15 +51,18 @@ const App = () => {
   }, []);
 
   const fetchWorldCasesData = async () => {
+    setLoading(true);
     const response = await fetch(BASE_API_URL + ALL);
     const data = await response.json();
     setCountryInfo(data);
+    setLoading(false);
   };
 
   const onCountryChange = (event) => {
     const countryCode = event.target.value;
     
     if (countryCode !== 'worldwide') {
+      setLoading(true);
       fetch(BASE_API_URL + COUNTRIES + `/${countryCode}`)
         .then(response => response.json())
         .then(data => {
@@ -64,6 +71,7 @@ const App = () => {
           setMapCenter({ lat: data.countryInfo.lat, lng: data.countryInfo.long });
           setMapZoom(3);
         });
+      setLoading(false);
     } else {
       fetchWorldCasesData();
       setCountry('worldwide');
@@ -81,7 +89,8 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Paper className={classes.app}>
-        <Box className={classes.app_left_side}>
+        <LoadingIndicator loading={loading} />
+        <Box className={classes.appLeftSide}>
           <Header
             countries={countries}
             country={country}
@@ -123,7 +132,7 @@ const useStyles = makeStyles((theme) => ({
      height: '100%',
    },
   },
-  app_left_side: {
+  appLeftSide: {
     flex: 0.9,
   },
 }));

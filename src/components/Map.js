@@ -86,6 +86,7 @@ const useStyles = makeStyles((theme) => ({
   map: {
     height: '100%',
     borderRadius: '12px',
+    zIndex: 1,
   },
 }));
 
