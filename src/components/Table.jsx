@@ -3,11 +3,12 @@ import { Box, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { formatData } from '../utils/formatData';
+import { sortDescending } from '../utils/sort';
 import colors from '../config/colors';
 
 const Table = ({ countries }) => {
   const classes = useStyles();
-  const sortedData = countries.sort((a,b) => b.cases - a.cases);
+  const sortedCountries = sortDescending(countries);
 
   return (
     <Box>
@@ -15,7 +16,7 @@ const Table = ({ countries }) => {
       <Box className={classes.table}>
         <table>
           <tbody>
-            {sortedData.map(country => (
+            {sortedCountries.map(country => (
               <tr key={country.name} className={classes.tr}>
                 <td className={classes.td}>{country.name}</td>
                 <td className={classes.td}>
