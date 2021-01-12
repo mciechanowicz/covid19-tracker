@@ -3,6 +3,7 @@ import { Box, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { formatData } from '../utils/formatData';
+import colors from '../config/colors';
 
 const Table = ({ countries }) => {
   const classes = useStyles();
@@ -38,13 +39,13 @@ const useStyles = makeStyles({
     overflowY: 'scroll',
     height: '300px',
     backgroundColor: '#fff',
-    color: '#6a5d5d',
+    color: colors.PRIMARY_GRAY,
   },
   tr: {
     display: 'flex',
     justifyContent: 'space-between',
     '&:nth-of-type(odd)': {
-      backgroundColor: '#f3f2f8',
+      backgroundColor: colors.BACKGROUND_LIGHT,
     },
   },
   td: {

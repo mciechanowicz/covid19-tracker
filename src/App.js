@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, CardContent, Paper, Container, Typography } from '@material-ui/core';
+import { Card, CardContent, Paper, Container, Typography, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Map from './components/Map';
 import Table from './components/Table'
@@ -77,7 +77,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Paper className={classes.app}>
-        <Container className={classes.app_left_side}>
+        <Box className={classes.app_left_side}>
           <Header
             countries={countries}
             country={country}
@@ -95,7 +95,7 @@ const App = () => {
             mapCenter={mapCenter}
             mapZoom={mapZoom}
           />
-        </Container>
+        </Box>
         <Card>
           <CardContent>
             <Table countries={countries} />
@@ -116,6 +116,7 @@ const useStyles = makeStyles((theme) => ({
   app: {
     display: 'flex',
     justifyContent: 'space-evenly',
+    flex: 1,
     padding: '20px',
     height: '100vh',
    [ theme.breakpoints.down('sm')]: {

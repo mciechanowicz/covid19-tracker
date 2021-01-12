@@ -4,18 +4,19 @@ import { Map as LeafletMap, TileLayer, Circle, Popup } from 'react-leaflet';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { formatData } from '../utils/formatData';
+import colors from '../config/colors';
 
 const casesTypes = {
   cases: {
-    color: "#CC1034",
+    color: colors.PRIMARY_RED,
     multiplier: 600,
   },
   recovered: {
-    color: "#32965D",
+    color: colors.PRIMARY_GREEN,
     multiplier: 1000,
   },
   deaths: {
-    color: "#500119",
+    color: colors.SECONDARY_RED,
     multiplier: 1800,
   },
 };
@@ -79,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '20px',
     marginTop: '16px',
     boxShadow: '0 0 8px -4px rgba(0, 0, 0, 0.5)',
-    backgroundColor: theme.palette.type !== 'light' ? '#424242' : '#fff',
+    backgroundColor: theme.palette.type !== 'light' ? colors.BACKGROUND : '#fff',
   },
   map: {
     height: '100%',

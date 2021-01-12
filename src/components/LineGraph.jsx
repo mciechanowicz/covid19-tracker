@@ -3,6 +3,7 @@ import { Box } from '@material-ui/core';
 import { Line } from 'react-chartjs-2';
 
 import { formatDataThirdFormat, formatDataFourthFormat } from '../utils/formatData';
+import colors from '../config/colors';
 
 const options = {
   legend: {
@@ -80,8 +81,8 @@ const LineGraph = ({ type }) => {
           data={{
             datasets: [
               {
-                backgroundColor: "rgba(204, 16, 52, 0.5)",
-                borderColor: "#CC1034",
+                backgroundColor: colors.BACKGROUND_RED,
+                borderColor: colors.BORDER_RED,
                 data: data,
               },
             ],
