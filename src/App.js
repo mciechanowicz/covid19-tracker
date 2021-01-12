@@ -35,7 +35,8 @@ const App = () => {
             code: country.countryInfo.iso2,
             cases: country.cases,
           }
-        ))
+        ));
+
         setCountries(countries)
         setMapCountries(data);
       })

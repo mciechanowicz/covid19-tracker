@@ -5,6 +5,10 @@ import { MenuItem, FormControl, Select, Typography, Box, Switch } from '@materia
 const Header = ({ country, onCountryChange, countries, handleDarkMode, darkMode }) => {
   const classes = useStyles();
 
+  const alphabeticallySortedCountries = countries.sort((a,b) =>
+    (a.name.toLowerCase() < b.name.toLowerCase()) ? -1 : (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : 0
+  );
+
   return (
     <Box className={classes.container}>
       <Box
@@ -34,7 +38,7 @@ const Header = ({ country, onCountryChange, countries, handleDarkMode, darkMode 
             onChange={onCountryChange}
           >
             <MenuItem value="worldwide">Worldwide</MenuItem>
-            {countries.map(country => (
+            {alphabeticallySortedCountries.map(country => (
               <MenuItem key={country.name} value={country.code}>{country.name}</MenuItem>
             ))}
           </Select>
