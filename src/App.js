@@ -51,12 +51,12 @@ const App = () => {
   }, []);
 
   const onCountryChange = (event) => {
-    const contryCode = event.target.value;
+    const countryCode = event.target.value;
 
-    fetch(BASE_API_URL + COUNTRIES + `/${contryCode}`)
+    fetch(BASE_API_URL + COUNTRIES + `/${countryCode}`)
       .then(response => response.json())
       .then(data => {
-        setCountry(contryCode);
+        setCountry(countryCode);
         setCountryInfo(data);
         setMapCenter({ lat: data.countryInfo.lat, lng: data.countryInfo.long });
         setMapZoom(3);
