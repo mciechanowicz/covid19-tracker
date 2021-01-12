@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Paper, Box, CircularProgress } from '@material-ui/core';
+import { Paper, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
