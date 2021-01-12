@@ -37,35 +37,42 @@ const App = () => {
           }
         ));
 
-        setCountries(countries)
+        setCountries(countries);
         setMapCountries(data);
       })
   }, []);
 
   useEffect(() => {
-    fetch(BASE_API_URL + ALL)
-      .then(response => response.json())
-      .then(data => {
-        setCountryInfo(data);
-      });
+      fetchWorldCasesData();
   }, []);
+
+  const fetchWorldCasesData = async () => {
+    const response = await fetch(BASE_API_URL + ALL);
+    const data = await response.json();
+    setCountryInfo(data);
+  };
 
   const onCountryChange = (event) => {
     const countryCode = event.target.value;
-
-    fetch(BASE_API_URL + COUNTRIES + `/${countryCode}`)
-      .then(response => response.json())
-      .then(data => {
-        setCountry(countryCode);
-        setCountryInfo(data);
-        setMapCenter({ lat: data.countryInfo.lat, lng: data.countryInfo.long });
-        setMapZoom(3);
-      });
+    
+    if (countryCode !== 'worldwide') {
+      fetch(BASE_API_URL + COUNTRIES + `/${countryCode}`)
+        .then(response => response.json())
+        .then(data => {
+          setCountry(countryCode);
+          setCountryInfo(data);
+          setMapCenter({ lat: data.countryInfo.lat, lng: data.countryInfo.long });
+          setMapZoom(3);
+        });
+    } else {
+      fetchWorldCasesData();
+      setCountry('worldwide');
+    }
   };
 
   const handleDarkMode = () => {
     setDarkMode(!darkMode)
-  }
+  };
 
   const setDataType = (type) => {
     setType(type);
