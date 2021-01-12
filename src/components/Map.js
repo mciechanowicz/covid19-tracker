@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Typography } from '@material-ui/core';
 import { Map as LeafletMap, TileLayer, Circle, Popup } from 'react-leaflet';
 import { makeStyles } from '@material-ui/core/styles';
+import "leaflet/dist/leaflet.css";
 
 import { formatData } from '../utils/formatData';
 import colors from '../config/colors';

@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Card, CardContent, Paper, Container, Typography, Box } from '@material-ui/core';
+import { Paper, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Map from './components/Map';
-import Table from './components/Table'
-import LineGraph from './components/LineGraph'
-import Header from './components/Header';
-import Stats from './components/Stats';
-import "leaflet/dist/leaflet.css";
+import { Header, Map, Stats, Sidebar } from './components';
 
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
@@ -96,15 +91,10 @@ const App = () => {
             mapZoom={mapZoom}
           />
         </Box>
-        <Card>
-          <CardContent>
-            <Table countries={countries} />
-            <Typography variant="h6">
-              Worldwide new cases
-            </Typography>
-            <LineGraph type={type} />
-          </CardContent>
-        </Card>
+        <Sidebar
+          countries={countries}
+          type={type}
+        />
       </Paper>
     </ThemeProvider>
   );

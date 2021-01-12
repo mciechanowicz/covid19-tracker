@@ -1,7 +1,7 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
+import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import InfoBox from './InfoBox';
+import { InfoBox } from './';
 
 import { formatDataSecondFormat } from '../utils/formatData';
 

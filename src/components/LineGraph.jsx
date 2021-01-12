@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Box } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 import { Line } from 'react-chartjs-2';
 
 import { formatDataThirdFormat, formatDataFourthFormat } from '../utils/formatData';
@@ -75,22 +75,27 @@ const LineGraph = ({ type }) => {
   }, [type]);
 
   return (
-    <Box>
-      {data?.length > 0 && (
-        <Line
-          data={{
-            datasets: [
-              {
-                backgroundColor: colors.BACKGROUND_RED,
-                borderColor: colors.BORDER_RED,
-                data: data,
-              },
-            ],
-          }}
-          options={options}
-        />
-      )}
-    </Box>
+    <>
+      <Typography variant="h6">
+        Worldwide new cases
+      </Typography>
+      <Box>
+        {data?.length > 0 && (
+          <Line
+            data={{
+              datasets: [
+                {
+                  backgroundColor: colors.BACKGROUND_RED,
+                  borderColor: colors.BORDER_RED,
+                  data: data,
+                },
+              ],
+            }}
+            options={options}
+          />
+        )}
+      </Box>
+    </>
   );
 }
 
