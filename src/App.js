@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Paper, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Header, Map, Stats, Sidebar } from './components';
-
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+
+import { Header, Map, Stats, Sidebar } from './components';
+import { BASE_API_URL, COUNTRIES, ALL } from './config/api';
 
 
 const App = () => {
@@ -25,7 +26,7 @@ const App = () => {
   });
 
   useEffect(() => {
-    fetch('https://disease.sh/v3/covid-19/countries')
+    fetch(BASE_API_URL + COUNTRIES)
       .then(response => response.json())
       .then(data =>  {
         const countries = data.map(country => (
@@ -41,7 +42,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    fetch('https://disease.sh/v3/covid-19/all')
+    fetch(BASE_API_URL + ALL)
       .then(response => response.json())
       .then(data => {
         setCountryInfo(data);
@@ -51,7 +52,7 @@ const App = () => {
   const onCountryChange = (event) => {
     const contryCode = event.target.value;
 
-    fetch(`https://disease.sh/v3/covid-19/countries/${contryCode}`)
+    fetch(BASE_API_URL + COUNTRIES + `/${contryCode}`)
       .then(response => response.json())
       .then(data => {
         setCountry(contryCode);
